@@ -8,11 +8,9 @@ import java.util.List;
 
 public class Cube implements Shape {
     private List<Point> points;
-    private double edge;
 
-    public Cube(List<Point> points, double edge) {
+    public Cube(List<Point> points) {
         this.points = points;
-        this.edge = edge;
     }
 
     public boolean addPoint(Point point) {
@@ -35,14 +33,6 @@ public class Cube implements Shape {
         this.points = new ArrayList<>(points);
     }
 
-    public double getEdge() {
-        return edge;
-    }
-
-    public void setEdge(double edge) {
-        this.edge = edge;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,25 +40,18 @@ public class Cube implements Shape {
 
         Cube cube = (Cube) o;
 
-        if (Double.compare(cube.edge, edge) != 0) return false;
         return points != null ? points.equals(cube.points) : cube.points == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = points != null ? points.hashCode() : 0;
-        temp = Double.doubleToLongBits(edge);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return points != null ? points.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Cube{");
         sb.append("points=").append(points);
-        sb.append(", edge=").append(edge);
         sb.append('}');
         return sb.toString();
     }

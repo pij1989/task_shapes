@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CubeParser {
-    private static final Logger logger = LogManager.getLogger(CubeParser.class);
+public class CubeInitialDataParser {
+    private static final Logger logger = LogManager.getLogger(CubeInitialDataParser.class);
     private static final String DELIMITER_COMMA = ",";
     private static final String DELIMITER_SPACE = " ";
 

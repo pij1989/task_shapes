@@ -1,36 +1,35 @@
 package com.pozharsky.dmitri.entity.impl;
 
-import com.pozharsky.dmitri.entity.Point;
 import com.pozharsky.dmitri.entity.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cube implements Shape {
-    private List<Point> points;
+    private List<CubePoint> cubePoints;
 
-    public Cube(List<Point> points) {
-        this.points = points;
+    public Cube(List<CubePoint> cubePoints) {
+        this.cubePoints = cubePoints;
     }
 
-    public boolean addPoint(Point point) {
-        return points.add(point);
+    public boolean addPoint(CubePoint cubePoint) {
+        return cubePoints.add(cubePoint);
     }
 
-    public Point getPoint(int index) {
-        return points.get(index);
+    public CubePoint getPoint(int index) {
+        return cubePoints.get(index);
     }
 
-    public void setPoint(int index, Point point) {
-        points.set(index, point);
+    public void setPoint(int index, CubePoint cubePoint) {
+        cubePoints.set(index, cubePoint);
     }
 
-    public List<Point> getPoints() {
-        return new ArrayList<>(points);
+    public List<CubePoint> getCubePoints() {
+        return new ArrayList<>(cubePoints);
     }
 
-    public void setPoints(List<Point> points) {
-        this.points = new ArrayList<>(points);
+    public void setCubePoints(List<CubePoint> cubePoints) {
+        this.cubePoints = new ArrayList<>(cubePoints);
     }
 
     @Override
@@ -40,18 +39,18 @@ public class Cube implements Shape {
 
         Cube cube = (Cube) o;
 
-        return points != null ? points.equals(cube.points) : cube.points == null;
+        return cubePoints != null ? cubePoints.equals(cube.cubePoints) : cube.cubePoints == null;
     }
 
     @Override
     public int hashCode() {
-        return points != null ? points.hashCode() : 0;
+        return cubePoints != null ? cubePoints.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Cube{");
-        sb.append("points=").append(points);
+        sb.append("points=").append(cubePoints);
         sb.append('}');
         return sb.toString();
     }

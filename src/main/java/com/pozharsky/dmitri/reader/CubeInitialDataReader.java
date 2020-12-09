@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CubeReader {
-    private static final Logger logger = LogManager.getLogger(CubeReader.class);
+public class CubeInitialDataReader {
+    private static final Logger logger = LogManager.getLogger(CubeInitialDataReader.class);
     private static final String DEFAULT_FILE = "data\\cube.txt";
 
-    public List<String> readCube(String file) {
+    public List<String> readData(String file) {
         if (file == null) {
             file = DEFAULT_FILE;
         }

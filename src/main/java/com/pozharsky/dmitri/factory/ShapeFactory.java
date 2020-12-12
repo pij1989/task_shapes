@@ -6,5 +6,5 @@ import com.pozharsky.dmitri.entity.Shape;
 import java.util.List;
 
 public interface ShapeFactory<T extends Shape> {
-    T createShape(List<CubePoint> cubePoints);
+    T createShape(long id, List<CubePoint> cubePoints);
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CubeFactory implements ShapeFactory<Cube> {
     @Override
-    public Cube createShape(List<CubePoint> cubePoints) {
-        return new Cube(cubePoints);
+    public Cube createShape(long id, List<CubePoint> cubePoints) {
+        return new Cube(id,cubePoints);
     }
 }

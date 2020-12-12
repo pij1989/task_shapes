@@ -16,20 +16,29 @@ public class CubeInitialDataParser {
 
     public List<List<Double>> parse(List<String> lines) {
         CubeInitialDataValidator validator = new CubeInitialDataValidator();
-        List<List<Double>> lists = new ArrayList<>();
+        List<List<Double>> listPointCoordinates = new ArrayList<>();
         for (String line : lines) {
             String[] points = line.split(DELIMITER_COMMA);
-            if (validator.validate(points)) {
-                for (String point : points) {
-                    List<Double> coordinats = Arrays.stream(point.trim().split(DELIMITER_SPACE))
-                            .map(Double::parseDouble)
-                            .collect(Collectors.toList());
-                    lists.add(coordinats);
-                }
-            } else {
-                logger.info("Incorrect line: " + line);
+            if (!validator.isCorrectAmountPoint(points)) {
+                logger.info("Incorrect amount of point. Should be 8 point. Line: " + line);
+                continue;
             }
+            if (!validator.isCorrectCoordinate(points)) {
+                logger.info("Incorrect coordinate of point. Line: " + line);
+                continue;
+            }
+            List<Double> pointCoordinates = Arrays.stream(points)
+                    .flatMap(o->Arrays.stream(o.trim().split(DELIMITER_SPACE)))
+                    .map(Double::parseDouble)
+                    .collect(Collectors.toList());
+            listPointCoordinates.add(pointCoordinates);
+            /*for (String point : points) {
+                List<Double> pointCoordinates = Arrays.stream(point.trim().split(DELIMITER_SPACE))
+                        .map(Double::parseDouble)
+                        .collect(Collectors.toList());
+                listCubePoints.add(pointCoordinates);
+            }*/
         }
-        return lists;
+        return listPointCoordinates;
     }
 }

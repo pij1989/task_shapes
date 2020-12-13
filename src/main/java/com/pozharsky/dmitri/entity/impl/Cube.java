@@ -2,15 +2,20 @@ package com.pozharsky.dmitri.entity.impl;
 
 import com.pozharsky.dmitri.entity.Shape;
 import com.pozharsky.dmitri.exception.ShapeException;
+import com.pozharsky.dmitri.observer.Observable;
+import com.pozharsky.dmitri.observer.Observer;
+import com.pozharsky.dmitri.observer.impl.CubeObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cube implements Shape<CubePoint> {
+public class Cube implements Shape<CubePoint>, Observable<CubeObserver> {
     private long id;
     private List<CubePoint> cubePoints;
+    private Observer<Cube> observer;
 
     public Cube() {
+        this.cubePoints = new ArrayList<>();
     }
 
     public Cube(long id, List<CubePoint> cubePoints) {
@@ -32,14 +37,15 @@ public class Cube implements Shape<CubePoint> {
 
     public void setCubePoints(List<CubePoint> cubePoints) {
         this.cubePoints = new ArrayList<>(cubePoints);
+        notifyObserver();
     }
 
     @Override
-    public boolean addPoint(CubePoint point) throws ShapeException {
+    public void addPoint(CubePoint point) throws ShapeException {
         if (point == null) {
             throw new ShapeException("Can not add zero point to cube");
         }
-        return cubePoints.add(point);
+        cubePoints.add(point);
     }
 
     @Override
@@ -47,18 +53,37 @@ public class Cube implements Shape<CubePoint> {
         if (index < 0 || index >= cubePoints.size()) {
             throw new ShapeException("Incorrect index. It should be more than zero and less than size");
         }
-        return null;
+        return cubePoints.get(index);
     }
 
     @Override
-    public CubePoint setPoint(int index, CubePoint point) throws ShapeException {
+    public void setPoint(int index, CubePoint point) throws ShapeException {
         if (point == null) {
             throw new ShapeException("Can not add zero point to cube");
         }
         if (index < 0 || index >= cubePoints.size()) {
             throw new ShapeException("Incorrect index. It should be more than zero and less than size");
         }
-        return null;
+        cubePoints.set(index, point);
+        notifyObserver();
+    }
+
+    @Override
+    public void attach(CubeObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void detach(CubeObserver observer) {
+        this.observer = null;
+    }
+
+    @Override
+    public void notifyObserver() {
+        if (observer != null) {
+            observer.performedSurfaceSquare(this);
+            observer.performedVolume(this);
+        }
     }
 
     @Override

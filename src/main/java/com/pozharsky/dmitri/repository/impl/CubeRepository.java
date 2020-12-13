@@ -4,6 +4,7 @@ import com.pozharsky.dmitri.entity.impl.Cube;
 import com.pozharsky.dmitri.repository.Repository;
 import com.pozharsky.dmitri.specification.Specification;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ public class CubeRepository implements Repository<Cube> {
     private static CubeRepository cubeRepository;
 
     private CubeRepository() {
+        this.cubes = new ArrayList<>();
     }
 
     public static CubeRepository getInstance() {

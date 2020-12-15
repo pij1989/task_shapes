@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CubeCreator {
-    public List<Cube> createCubes(CubeFactory cubeFactory, CubePointFactory cubePointFactory, String file) {
-        CubeInitialDataReader reader = new CubeInitialDataReader();
+    public List<Cube> createCubes(CubeFactory cubeFactory, CubePointFactory cubePointFactory, CubeInitialDataReader reader, String file) {
         CubeInitialDataParser parser = new CubeInitialDataParser();
         List<String> data = reader.readData(file);
         List<List<Double>> listPointCoordinates = parser.parse(data);

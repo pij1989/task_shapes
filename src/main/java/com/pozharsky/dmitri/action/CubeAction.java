@@ -11,10 +11,12 @@ import java.util.List;
 public class CubeAction {
     private static final Logger logger = LogManager.getLogger(CubeAction.class);
     private static final double ZERO_RESULT = 0.0;
+    private static final int SIDE_NUMBER = 6;
+    private static final int COORDINATE_NUMBER = 4;
 
     public double surfaceSquare(Cube cube) {
         double edge = defineEdge(cube);
-        return 6 * edge * edge;
+        return SIDE_NUMBER * edge * edge;
     }
 
     public double volumeCube(Cube cube) {
@@ -37,6 +39,31 @@ public class CubeAction {
             }
         }
         return true;
+    }
+
+    public boolean isBaseOnCoordinatePlane(Cube cube) {
+        int countX = 0;
+        int countY = 0;
+        int countZ = 0;
+        List<CubePoint> cubePoints = cube.getCubePoints();
+        for (CubePoint cubePoint : cubePoints) {
+            double x = cubePoint.getX();
+            double y = cubePoint.getY();
+            double z = cubePoint.getZ();
+            if (x == ZERO_RESULT) {
+                countX++;
+            }
+            if (y == ZERO_RESULT) {
+                countY++;
+            }
+            if (z == ZERO_RESULT) {
+                countZ++;
+            }
+            if (countX == COORDINATE_NUMBER || countY == COORDINATE_NUMBER || countZ == COORDINATE_NUMBER) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private double defineEdge(Cube cube) {

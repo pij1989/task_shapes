@@ -14,10 +14,10 @@ public class CubeInitialDataParser {
     private static final String DELIMITER_COMMA = ",";
     private static final String DELIMITER_SPACE = " ";
 
-    public List<List<Double>> parse(List<String> lines) {
+    public List<List<Double>> parse(List<String> cubeData) {
         CubeInitialDataValidator validator = new CubeInitialDataValidator();
         List<List<Double>> listPointCoordinates = new ArrayList<>();
-        for (String line : lines) {
+        for (String line : cubeData) {
             String[] points = line.split(DELIMITER_COMMA);
             if (!validator.isCorrectAmountPoint(points)) {
                 logger.info("Incorrect amount of point. Should be 8 point. Line: " + line);
@@ -32,12 +32,6 @@ public class CubeInitialDataParser {
                     .map(Double::parseDouble)
                     .collect(Collectors.toList());
             listPointCoordinates.add(pointCoordinates);
-            /*for (String point : points) {
-                List<Double> pointCoordinates = Arrays.stream(point.trim().split(DELIMITER_SPACE))
-                        .map(Double::parseDouble)
-                        .collect(Collectors.toList());
-                listCubePoints.add(pointCoordinates);
-            }*/
         }
         return listPointCoordinates;
     }

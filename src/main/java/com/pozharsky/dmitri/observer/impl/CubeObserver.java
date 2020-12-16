@@ -1,9 +1,9 @@
 package com.pozharsky.dmitri.observer.impl;
 
-import com.pozharsky.dmitri.action.CubeAction;
 import com.pozharsky.dmitri.entity.ParameterCube;
 import com.pozharsky.dmitri.entity.impl.Cube;
 import com.pozharsky.dmitri.observer.Observer;
+import com.pozharsky.dmitri.service.CubeService;
 import com.pozharsky.dmitri.storage.CubeWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,11 +13,11 @@ public class CubeObserver implements Observer<Cube> {
 
     @Override
     public void performedSurfaceSquare(Cube cube) {
-        CubeAction cubeAction = new CubeAction();
-        if (cubeAction.isCube(cube)) {
+        CubeService cubeService = new CubeService();
+        if (cubeService.isCube(cube)) {
             CubeWarehouse cubeWarehouse = CubeWarehouse.getInstance();
             long id = cube.getId();
-            double square = cubeAction.surfaceSquare(cube);
+            double square = cubeService.surfaceSquare(cube);
             ParameterCube parameterCube = cubeWarehouse.getParameterCube(id);
             parameterCube.setSquare(square);
             cubeWarehouse.updateParameterCube(id, parameterCube);
@@ -28,11 +28,11 @@ public class CubeObserver implements Observer<Cube> {
 
     @Override
     public void performedVolume(Cube cube) {
-        CubeAction cubeAction = new CubeAction();
-        if (cubeAction.isCube(cube)) {
+        CubeService cubeService = new CubeService();
+        if (cubeService.isCube(cube)) {
             CubeWarehouse cubeWarehouse = CubeWarehouse.getInstance();
             long id = cube.getId();
-            double volume = cubeAction.volumeCube(cube);
+            double volume = cubeService.volumeCube(cube);
             ParameterCube parameterCube = cubeWarehouse.getParameterCube(id);
             parameterCube.setVolume(volume);
             cubeWarehouse.updateParameterCube(id, parameterCube);

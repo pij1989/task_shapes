@@ -1,4 +1,4 @@
-package com.pozharsky.dmitri.action;
+package com.pozharsky.dmitri.service;
 
 import com.pozharsky.dmitri.entity.impl.Cube;
 import com.pozharsky.dmitri.entity.impl.CubePoint;
@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class CubeAction {
-    private static final Logger logger = LogManager.getLogger(CubeAction.class);
+public class CubeService {
+    private static final Logger logger = LogManager.getLogger(CubeService.class);
     private static final double ZERO_RESULT = 0.0;
     private static final int SIDE_NUMBER = 6;
     private static final int COORDINATE_NUMBER = 4;

@@ -1,6 +1,6 @@
 package com.pozharsky.dmitri.specification.impl;
 
-import com.pozharsky.dmitri.action.CubeAction;
+import com.pozharsky.dmitri.service.CubeService;
 import com.pozharsky.dmitri.entity.impl.Cube;
 import com.pozharsky.dmitri.specification.Specification;
 
@@ -15,10 +15,10 @@ public class VolumeIntervalSpecification implements Specification<Cube> {
 
     @Override
     public boolean specify(Cube cube) {
-        CubeAction cubeAction = new CubeAction();
+        CubeService cubeService = new CubeService();
         double volume = 0;
-        if (cubeAction.isCube(cube)) {
-            volume = cubeAction.volumeCube(cube);
+        if (cubeService.isCube(cube)) {
+            volume = cubeService.volumeCube(cube);
         }
         return (volumeFrom <= volume && volume <= volumeTo);
     }

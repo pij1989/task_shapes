@@ -5,6 +5,7 @@ import com.pozharsky.dmitri.entity.impl.Cube;
 import com.pozharsky.dmitri.observer.Observer;
 import com.pozharsky.dmitri.service.CubeService;
 import com.pozharsky.dmitri.storage.CubeWarehouse;
+import com.pozharsky.dmitri.validator.CubeValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +15,8 @@ public class CubeObserver implements Observer<Cube> {
     @Override
     public void performedSurfaceSquare(Cube cube) {
         CubeService cubeService = new CubeService();
-        if (cubeService.isCube(cube)) {
+        CubeValidator cubeValidator = new CubeValidator();
+        if (cubeValidator.isCube(cube.getCubePoints())) {
             CubeWarehouse cubeWarehouse = CubeWarehouse.getInstance();
             long id = cube.getId();
             double square = cubeService.surfaceSquare(cube);
@@ -29,7 +31,8 @@ public class CubeObserver implements Observer<Cube> {
     @Override
     public void performedVolume(Cube cube) {
         CubeService cubeService = new CubeService();
-        if (cubeService.isCube(cube)) {
+        CubeValidator cubeValidator = new CubeValidator();
+        if (cubeValidator.isCube(cube.getCubePoints())) {
             CubeWarehouse cubeWarehouse = CubeWarehouse.getInstance();
             long id = cube.getId();
             double volume = cubeService.volumeCube(cube);

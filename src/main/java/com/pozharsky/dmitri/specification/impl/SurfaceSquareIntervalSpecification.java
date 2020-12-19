@@ -1,7 +1,7 @@
 package com.pozharsky.dmitri.specification.impl;
 
-import com.pozharsky.dmitri.service.CubeService;
 import com.pozharsky.dmitri.entity.impl.Cube;
+import com.pozharsky.dmitri.service.CubeService;
 import com.pozharsky.dmitri.specification.Specification;
 
 public class SurfaceSquareIntervalSpecification implements Specification<Cube> {
@@ -16,10 +16,7 @@ public class SurfaceSquareIntervalSpecification implements Specification<Cube> {
     @Override
     public boolean specify(Cube cube) {
         CubeService cubeService = new CubeService();
-        double square = 0;
-        if (cubeService.isCube(cube)) {
-            square = cubeService.volumeCube(cube);
-        }
+        double square = cubeService.volumeCube(cube);
         return (squareFrom <= square && square <= squareTo);
     }
 }

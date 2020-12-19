@@ -46,14 +46,15 @@ public class CubeServiceTest {
     }
 
     @Test
-    public void testIsCube() {
-        boolean actual = cubeService.isCube(cube);
+    public void testIsBaseOnCoordinatePlane() {
+        boolean actual = cubeService.isBaseOnCoordinatePlane(cube);
         assertTrue(actual);
     }
 
     @Test
-    public void testIsBaseOnCoordinatePlane() {
-        boolean actual = cubeService.isBaseOnCoordinatePlane(cube);
-        assertTrue(actual);
+    public void testRelationVolumeAfterPlaneDissect() {
+        double actual = cubeService.relationVolumeAfterPlaneDissect(cube);
+        double expect = 0.0;
+        assertEquals(actual, expect);
     }
 }
